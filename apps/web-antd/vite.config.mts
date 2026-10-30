@@ -1,5 +1,6 @@
+import { resolve } from 'node:path';
+
 import { defineConfig } from '@vben/vite-config';
-import { resolve } from 'path';
 
 // 自行取消注释来启用按需导入功能
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
@@ -11,26 +12,28 @@ export default defineConfig(async () => {
     vite: {
       define: {
         // 注入项目根路径到运行时（ruoyi-admin目录层级）
-        __PROJECT_ROOT__: JSON.stringify((() => {
-          const cwd = process.cwd();
-          console.log('Vite当前工作目录:', cwd);
+        __PROJECT_ROOT__: JSON.stringify(
+          (() => {
+            const cwd = process.cwd();
+            console.log('Vite当前工作目录:', cwd);
 
-          // 规范化路径分隔符，统一处理 Windows 和 macOS/Linux
-          const normalizedPath = cwd.replace(/\\/g, '/');
+            // 规范化路径分隔符，统一处理 Windows 和 macOS/Linux
+            const normalizedPath = cwd.replaceAll('\\', '/');
 
-          // 如果当前目录包含 /apps/web-antd，则向上两级到 ruoyi-admin
-          if (normalizedPath.includes('/apps/web-antd')) {
-            return resolve(cwd, '../..');
-          }
-          // 如果当前目录包含 /apps，则向上一级到 ruoyi-admin
-          else if (normalizedPath.includes('/apps')) {
-            return resolve(cwd, '..');
-          }
-          // 否则返回当前目录
-          else {
-            return cwd;
-          }
-        })()),
+            // 如果当前目录包含 /apps/web-antd，则向上两级到 ruoyi-admin
+            if (normalizedPath.includes('/apps/web-antd')) {
+              return resolve(cwd, '../..');
+            }
+            // 如果当前目录包含 /apps，则向上一级到 ruoyi-admin
+            else if (normalizedPath.includes('/apps')) {
+              return resolve(cwd, '..');
+            }
+            // 否则返回当前目录
+            else {
+              return cwd;
+            }
+          })(),
+        ),
       },
       // 解决 jiti 构建问题
       optimizeDeps: {
@@ -44,9 +47,7 @@ export default defineConfig(async () => {
           transformMixedEsModules: true,
         },
         rollupOptions: {
-          external: [
-            /node_modules\/jiti\//,
-          ],
+          external: [/node_modules\/jiti\//],
         },
         target: 'es2022',
       },
@@ -68,9 +69,14 @@ export default defineConfig(async () => {
           '/api': {
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, ''),
-            // mock代理目标地址
             target: 'http://127.0.0.1:6039',
             ws: true,
+          },
+          // ========== 新增 WebSocket 代理（解决连接失败） ==========
+          '/ws': {
+            target: 'ws://127.0.0.1:6039', // 后端 WebSocket 地址
+            ws: true, // 启用 WebSocket 代理
+            changeOrigin: true,
           },
         },
       },

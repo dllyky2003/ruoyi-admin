@@ -15,6 +15,15 @@ export const DictEnum = {
   WF_TASK_STATUS: 'wf_task_status', // 任务状态
   SYS_MODEL_BILLING: 'sys_model_billing', // 计费方式
   CHAT_MODEL_CATEGORY: 'chat_model_category', // 模型分类
+  EMERGENCY_CONSCIOUSNESS: 'emergency_consciousness' ,// 病人意识状态
+  EMS_AIRWAY_PATENCY: 'ems_airway_patency', //气道开放状态
+  EMS_RESP_PATTERN: 'ems_resp_pattern', //呼吸模式（频率/节律）
+  EMS_CIRC_HEMODYNAMICS: 'ems_circ_hemodynamics',//循环状态
+  EMS_EXAM_SKIN: 'ems_exam_skin', //体表与关键表现
+  EMS_TEACHING_MODE: 'ems_teaching_mode',//教学模式
+  EMS_TEACHING_PLAN_TYPE: 'emc_teaching_plan_type'//教学计划类型
+
+  
 } as const;
 
 export type DictEnumKey = keyof typeof DictEnum;

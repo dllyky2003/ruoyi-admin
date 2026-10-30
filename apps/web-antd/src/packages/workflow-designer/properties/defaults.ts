@@ -38,6 +38,15 @@ export const propertyDefaultGetters: Record<string, DefaultGetter> = {
     content_size: 'medium',
     include_image: false,
   }),
+  ecgaction: () => ({
+    query: '用户语音识别结果文本输入',
+    search_engine: 'search_std',
+    result_count: 10,
+    search_domain_filter: '',
+    search_recency_filter: 'noLimit',
+    content_size: 'medium',
+    include_image: false,
+  }),
   mailsend: () => ({
     sender_type: 1,
     cc_mails: '',
