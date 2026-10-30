@@ -1,0 +1,6 @@
+<script lang="ts" setup>
+import { AnalysisChartCard } from '@vben/common-ui';
+const passed = ['所有阶段存在明确入口与出口', 'CPR 循环存在最大轮次保护', 'VF/pVT 延误规则已设置单轮触发限制', '评分对象均定义可复核完成证据'];
+const pending = ['请由医学负责人确认药物剂量与本地 SOP 一致', '请由教学负责人审核严重安全事件的复盘策略'];
+</script>
+<template><div><div class="mb-5"><h2 class="text-xl font-semibold">校验与发布</h2><p class="mt-1 text-sm text-muted-foreground">自动校验发现结构问题；临床正确性、教学目标和发布授权仍需人工负责。</p></div><div class="grid gap-5 xl:grid-cols-2"><AnalysisChartCard title="已通过校验"><ul class="space-y-3 text-sm"><li v-for="item in passed" :key="item" class="rounded-lg bg-emerald-50 p-3 text-emerald-800">✓ {{ item }}</li></ul></AnalysisChartCard><AnalysisChartCard title="待人工确认"><ul class="space-y-3 text-sm"><li v-for="item in pending" :key="item" class="rounded-lg bg-amber-50 p-3 text-amber-900">! {{ item }}</li></ul></AnalysisChartCard></div><AnalysisChartCard class="mt-5" title="发布冻结说明"><div class="rounded-lg border border-border bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">发布创建独立且可追溯的病例版本，并冻结：基础信息、模块引用或覆写、阶段规则、评分配置、音频资源和指南 / SOP 依据。运行记录必须关联具体已发布版本，以支持复盘与审计。</div></AnalysisChartCard></div></template>

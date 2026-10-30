@@ -234,6 +234,12 @@ export function getIconByComponentName(name: string) {
     case 'mailsend': {
       return 'carbon:mail-all';
     }
+    case 'ecgaction': {
+      return 'carbon:play-outline';
+    }
+    case 'print': {
+      return 'carbon:play-outline';
+    }
     case 'start': {
       return 'carbon:play-outline';
     }
@@ -274,6 +280,9 @@ export function getIconClassByComponentName(name: string) {
     }
     case 'mailsend': {
       return 'text-amber-800';
+    }
+    case 'ecgation': {
+      return 'text-blue-900';
     }
     case 'start': {
       return 'text-blue-900';

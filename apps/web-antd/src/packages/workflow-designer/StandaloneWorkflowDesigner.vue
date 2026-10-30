@@ -8,6 +8,7 @@ import SvgIcon from './components/SvgIcon.vue'
 import { createNewEdge, createNewNode, emptyWorkflowInfo, getIconByComponentName, getIconClassByComponentName } from './utils/workflow-util'
 import type { WorkflowInfo, WorkflowComponent, WorkflowNode } from './types/index.d'
 import RightPanel from './panels/RightPanel.vue'
+
 import NodeShell from './components/nodes/NodeShell.vue'
 
 interface Props {

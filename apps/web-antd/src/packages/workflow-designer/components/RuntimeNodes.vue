@@ -25,6 +25,7 @@ function getComponentNameByWorkflowComponentId(workflowComponentId: number | str
     case 2: return 'End'
     case 3: return 'Answer'
     case 6: return 'KnowledgeRetrieval'
+    case 7: return 'EcgAction'
     case 8: return 'FaqExtractor'
     case 9: return 'Switcher'
     case 11: return 'Dalle3'

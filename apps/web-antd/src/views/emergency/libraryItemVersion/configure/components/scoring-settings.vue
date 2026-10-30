@@ -1,0 +1,5 @@
+<script lang="ts" setup>
+import { ref } from 'vue';
+const items = ref([{ target: '识别可除颤节律', evidence: '监护节律确认 + 团队口头闭环', limit: '60 秒内', weight: 15 }, { target: '完成有效除颤', evidence: '充电、能量合规、安全清场、实际放电', limit: '120 秒内', weight: 25 }, { target: '高质量 CPR', evidence: '设备记录的按压深度、频率和中断时长', limit: '全程', weight: 30 }]);
+</script>
+<template><div><div class="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-950"><b>评分证据优先级：</b>设备接口数据优先，其次导师确认；ASR / AI 候选意图不可作为唯一考核事实。</div><div class="overflow-x-auto"><table class="w-full min-w-[680px] text-left text-sm"><thead class="border-b border-border text-muted-foreground"><tr><th class="p-3">评分对象</th><th class="p-3">完成证据</th><th class="p-3">时限</th><th class="p-3">权重</th></tr></thead><tbody><tr v-for="item in items" :key="item.target" class="border-b border-border/70"><td class="p-3 font-medium">{{ item.target }}</td><td class="p-3">{{ item.evidence }}</td><td class="p-3">{{ item.limit }}</td><td class="p-3"><input v-model.number="item.weight" class="w-16 rounded border border-border px-2 py-1" type="number" /> 分</td></tr></tbody></table></div></div></template>

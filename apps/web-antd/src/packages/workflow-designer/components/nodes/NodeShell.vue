@@ -57,6 +57,28 @@ const lines = computed(() => {
         }`,
       ];
     }
+    case 'ecgaction': {
+      return [
+        `引擎： ${
+          {
+            search_pro: '高阶搜索',
+            search_pro_quark: '高阶搜索 · 夸克',
+            search_pro_sogou: '高阶搜索 · 搜狗',
+            search_std: '基础搜索',
+          }[c.search_engine as string] || '基础搜索'
+        }`,
+        `结果： ${c.result_count ?? 10} 条`,
+        `时间： ${
+          {
+            noLimit: '不限时间',
+            oneDay: '一天内',
+            oneMonth: '一个月内',
+            oneWeek: '一周内',
+            oneYear: '一年内',
+          }[c.search_recency_filter as string] || '不限时间'
+        }`,
+      ];
+    }
     case 'httprequest': {
       return [`${c.method || 'GET'} ${cut(c.url || '')}`];
     }
